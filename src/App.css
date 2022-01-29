@@ -17,7 +17,7 @@ a:hover{
     color: var(--pink) !important;
 }
 
-.app{
+.App{
     display: flex;
     overflow: hidden;
 }
@@ -93,7 +93,7 @@ a:hover{
 }
 
 @media screen and (max-width:800px){
-    .app{
+    .App{
         flex-direction: column;
         overflow: hidden;
     }
