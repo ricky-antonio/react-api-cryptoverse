@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className="logo-container">
                 <Avatar src={icon} size="large" />
                 <Typography.Title level={2} className="logo">
-                    <Link to="/">Cryptoverse</Link>
+                    <Link to="/cryptoverse/">Cryptoverse</Link>
                 </Typography.Title>
                 <Button className='menu-control-container' onClick={() => setActiveMenu(!activeMenu)} >
                     <MenuOutlined />
@@ -43,16 +43,16 @@ const Navbar = () => {
             {activeMenu && (
                 <Menu theme="dark">
                     <Menu.Item key="home" icon={<HomeOutlined />}>
-                        <Link to="/" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>Home</Link>
+                        <Link to="/cryptoverse/" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>Home</Link>
                     </Menu.Item>
                     <Menu.Item key="cryptocurrencies" icon={<FundOutlined />}>
-                        <Link to="/cryptocurrencies" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>Cryptocurrencies</Link>
+                        <Link to="/cryptoverse/cryptocurrencies" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>Cryptocurrencies</Link>
                     </Menu.Item>
                     {/* <Menu.Item key="exchanges" icon={<MoneyCollectOutlined />}>
-                        <Link to="/exchanges" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>Exchanges</Link>
+                        <Link to="/cryptoverse/exchanges" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>Exchanges</Link>
                     </Menu.Item> */}
                     <Menu.Item key="news" icon={<BulbOutlined />}>
-                        <Link to="/news" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>News</Link>
+                        <Link to="/cryptoverse/news" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>News</Link>
                     </Menu.Item>
                 </Menu>
             )}

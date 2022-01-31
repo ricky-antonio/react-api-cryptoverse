@@ -1,5 +1,6 @@
 {
   "name": "cryptoverse",
+  "homepage": "https://www.ricmonterrosa.com/cryptoverse/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
