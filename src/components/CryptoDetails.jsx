@@ -11,6 +11,7 @@ import {
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi';
 
 import LineChart from './LineChart';
+import Loader from './Loader';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -43,7 +44,7 @@ const CryptoDetails = () => {
 		{ title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`, icon: <ExclamationCircleOutlined /> },
 	];
 
-	if (isFetching) return 'Loading...';
+	if (isFetching) return <Loader />;
 
 	return (
 		<Col className='coin-detail-container'>
