@@ -8,7 +8,9 @@ import {
 	CheckOutlined, NumberOutlined, ThunderboltOutlined
 } from '@ant-design/icons';
 
-import { useGetCryptoDetailsQuery } from '../services/cryptoApi';
+import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi';
+
+import LineChart from './LineChart';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -17,6 +19,7 @@ const CryptoDetails = () => {
 	const { coinId } = useParams();
 	const [timePeriod, setTimePeriod] = useState('7d');
 	const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+	const{ data: coinHistory } = useGetCryptoHistoryQuery({coinId, timePeriod});
 	const cryptoDetails = data?.data?.coin;
 
 	console.log(cryptoDetails)
@@ -26,6 +29,7 @@ const CryptoDetails = () => {
 	const stats = [
 		{ title: 'Price to USD', value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}`, icon: <DollarCircleOutlined /> },
 		{ title: 'Rank', value: cryptoDetails?.rank, icon: <NumberOutlined /> },
+		{ title: '24h Volume', value: `$ ${cryptoDetails?.["24hVolume"] && millify(cryptoDetails?.["24hVolume"])}`, icon: <DollarCircleOutlined /> },
 		{ title: 'Change', value: `${cryptoDetails?.change && millify(cryptoDetails?.change)}%`, icon: <ThunderboltOutlined /> },
 		{ title: 'Market Cap', value: `$ ${cryptoDetails?.marketCap && millify(cryptoDetails?.marketCap)}`, icon: <DollarCircleOutlined /> },
 		{ title: 'All-time-high(daily avg.)', value: `$ ${cryptoDetails?.allTimeHigh?.price && millify(cryptoDetails?.allTimeHigh?.price)}`, icon: <TrophyOutlined /> }
@@ -38,6 +42,8 @@ const CryptoDetails = () => {
 		{ title: 'Total Supply', value: `$ ${cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)}`, icon: <ExclamationCircleOutlined /> },
 		{ title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`, icon: <ExclamationCircleOutlined /> },
 	];
+
+	if (isFetching) return 'Loading...';
 
 	return (
 		<Col className='coin-detail-container'>
@@ -59,7 +65,11 @@ const CryptoDetails = () => {
 				{time.map(date => <Option key={date}>{date}</Option>)}
 			</Select>
 
-			{/* Line chart */}
+			<LineChart
+				coinHistory={coinHistory}
+				currentPrice={millify(cryptoDetails.price, {precision: 2})}
+				coinName={cryptoDetails.name}
+			/>
 
 			<Col className='stats-container' >
 				<Col className='coin-value-statistics'>
@@ -71,8 +81,8 @@ const CryptoDetails = () => {
 							An overview showing the stats of {CryptoDetails.name}
 						</p>
 					</Col>
-					{stats.map(({ icon, title, value }) => (
-						<Col className='coin-stats'>
+					{stats.map(({ icon, title, value }, i) => (
+						<Col className='coin-stats' key={i}>
 							<Col className='coin-stats-name'>
 								<Text>{icon}</Text>
 								<Text>{title}</Text>
@@ -91,8 +101,8 @@ const CryptoDetails = () => {
 							An overview showing the stats of all cryptocurrencies
 						</p>
 					</Col>
-					{genericStats.map(({ icon, title, value }) => (
-						<Col className='coin-stats'>
+					{genericStats.map(({ icon, title, value }, i) => (
+						<Col className='coin-stats' key={i}>
 							<Col className='coin-stats-name'>
 								<Text>{icon}</Text>
 								<Text>{title}</Text>
