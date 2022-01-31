@@ -4,37 +4,12 @@ import { Col, Row, Typography } from 'antd';
 
 import { Chart as ChartJS } from 'chart.js/auto'
 
-// import {
-// 	Chart as ChartJS,
-// 	CategoryScale,
-// 	LinearScale,
-// 	PointElement,
-// 	LineElement,
-// 	Title,
-// 	Tooltip,
-// 	Legend,
-// 	} from 'chart.js';
-
-
-// 	ChartJS.register(
-// 		CategoryScale,
-// 		LinearScale,
-// 		PointElement,
-// 		LineElement,
-// 		Title,
-// 		Tooltip,
-// 		Legend
-// 		);
-
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
 	const coinPrice = [];
 	const coinTimestamp = [];
-	// console.log({coinPrice, coinTimestamp, coinHistory})
-	// console.log(new Date(1643560800))
 
 	for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
 		coinPrice.push(coinHistory?.data.history[i].price);
-		// coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
 		coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp * 1000).toLocaleDateString());
 	}
 

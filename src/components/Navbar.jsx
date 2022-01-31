@@ -48,9 +48,9 @@ const Navbar = () => {
                     <Menu.Item key="cryptocurrencies" icon={<FundOutlined />}>
                         <Link to="/cryptocurrencies" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>Cryptocurrencies</Link>
                     </Menu.Item>
-                    <Menu.Item key="exchanges" icon={<MoneyCollectOutlined />}>
+                    {/* <Menu.Item key="exchanges" icon={<MoneyCollectOutlined />}>
                         <Link to="/exchanges" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>Exchanges</Link>
-                    </Menu.Item>
+                    </Menu.Item> */}
                     <Menu.Item key="news" icon={<BulbOutlined />}>
                         <Link to="/news" onClick={screenSize < 768 ? () => setActiveMenu(!activeMenu) : null}>News</Link>
                     </Menu.Item>

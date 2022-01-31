@@ -23,8 +23,8 @@ const CryptoDetails = () => {
 	const{ data: coinHistory } = useGetCryptoHistoryQuery({coinId, timePeriod});
 	const cryptoDetails = data?.data?.coin;
 
-	console.log({coinHistory})
-    console.log({timePeriod})
+	// console.log({coinHistory})
+    // console.log({timePeriod})
 
 
 	const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
