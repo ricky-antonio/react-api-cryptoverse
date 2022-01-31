@@ -2,7 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Col, Row, Typography } from 'antd';
 
-import {Chart as ChartJS} from 'chart.js/auto'
+import { Chart as ChartJS } from 'chart.js/auto'
 
 // import {
 // 	Chart as ChartJS,
@@ -14,7 +14,7 @@ import {Chart as ChartJS} from 'chart.js/auto'
 // 	Tooltip,
 // 	Legend,
 // 	} from 'chart.js';
-	
+
 
 // 	ChartJS.register(
 // 		CategoryScale,
@@ -29,13 +29,13 @@ import {Chart as ChartJS} from 'chart.js/auto'
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
 	const coinPrice = [];
 	const coinTimestamp = [];
-	console.log({coinPrice, coinTimestamp, coinHistory})
+	// console.log({coinPrice, coinTimestamp, coinHistory})
 	// console.log(new Date(1643560800))
 
 	for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
 		coinPrice.push(coinHistory?.data.history[i].price);
 		// coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
-	 coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp*1000).toLocaleDateString());
+		coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp * 1000).toLocaleDateString());
 	}
 
 	const data = {
@@ -46,22 +46,24 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
 				data: coinPrice,
 				fill: false,
 				backgroundColor: '#0071bd',
-				borderColor: '#0071bd' 
+				borderColor: '#0071bd'
 			}
 		]
 	}
 
 	const options = {
 		scales: {
-			yAxes: 
-				{
-					ticks: {
-						beginAtZero: true
-					}	
+			yAxis: {
+				ticks: {
+					beginAtZero: true
 				}
-			
+			}
 		}
 	}
+
+
+
+
 
 	return (
 		<>
